@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Prodotto</th>
+      <th scope="col">Quantità</th>
+      <th scope="col">Prezzo</th>
+      <th scope="col">Totale</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Loop through the data -->
+    {% for item in items %}
+    <tr>
+      <td>{{ item["product"] }}</td>
+      <td>{{ item["qt"] }}</td>
+      <td>{{ item["price"] }}</td>
+      <td>{{ item["total"] }}</td>
+    {% endfor %}
+  </tbody>
+</table>

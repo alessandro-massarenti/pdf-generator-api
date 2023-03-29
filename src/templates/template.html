@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!--css from bootstrap-->
+
+    <style>
+        *{
+            background: red;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer">
+        {% block footer %}
+        {{today_date.strftime("%d %b, %Y")}}
+        {% endblock %}
+    </div>
+</body>
+</html>

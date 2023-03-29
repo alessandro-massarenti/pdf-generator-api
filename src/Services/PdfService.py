@@ -7,9 +7,17 @@ from datetime import datetime
 class PdfService:
 
     @staticmethod
-    def get_pdf(nome):
+    def get_pdf(user_data):
         today_date = datetime.today()
-        context = {'sender': nome["name"], 'receiver': "Gian", 'oggetti': [{"qt": 23}], 'today_date': today_date}
+
+        oggetti = [
+            {"product": "mela", "qt": 2, "price": 2.5, "total": 5},
+            {"product": "Coca Cola", "qt": 10, "price": 2, "total": 20},
+            {"product": "Pasta", "qt": 1, "price": 1.5, "total": 1.5},
+            {"product": "Fantasia", "qt": 3, "price": 1.5, "total": 4.5},
+        ]
+
+        context = {'sender': user_data["name"],'receiver': "Gian", 'items': user_data["items"], 'today_date': today_date}
         #use the template folder to load the html
         template_loader = FileSystemLoader('./templates/')
         template_env = Environment(loader=template_loader)
@@ -17,7 +25,7 @@ class PdfService:
         html = template.render(context)
         # create a pdfoutput_text
         output = BytesIO()
-        pisa_status = pisa.CreatePDF(src=html, dest=output)
+        pisa_status = pisa.CreatePDF(src=html, dest=output, encoding='utf-8')
         # if error then show some funny view
         if pisa_status.err:
             print("error")
