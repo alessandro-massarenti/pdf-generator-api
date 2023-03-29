@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
-from fastapi import File
+from Services.PdfService import PdfService
 import tempfile
 
 app = FastAPI()
@@ -16,8 +16,6 @@ async def pdf(data: dict):
 
     global last_data
     last_data = data
-
-    from Services.PdfService import PdfService
 
     pdf = PdfService.get_pdf(data)
     pdf.seek(0)
